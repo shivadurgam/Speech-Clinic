@@ -1,0 +1,11 @@
+<p>
+	<strong>Patient:</strong>
+	<%= @appointment.user.email %>
+</p>
+<p>
+  <strong>Date:</strong>
+  <%= @appointment.date %>
+</p>
+
+<%= link_to 'Edit', edit_appointment_path(@appointment) %> |
+<%= link_to 'Back', appointments_path %>

@@ -1,0 +1,16 @@
+<div class="panel panel-default">
+	<div class="panel-heading">
+		<h3>Your Profile:</h3>
+	</div>
+
+	<div class="panel-body">
+		<h4><strong>Username:</strong> <%= current_user.email %></h4><br/>
+		Your appointment is scheduled on 
+			<% current_user.appointments.each do |apmt| %>
+				<strong><%= apmt.date.strftime("#{apmt.date.day.ordinalize} %B, %Y") %>.
+				</strong> <br /><br />
+				To Reschedule your appointment 
+				<%= link_to 'Click here', edit_appointment_path(apmt), class: "btn btn-primary" %>	
+			<% end %>								
+	</div>
+</div>
