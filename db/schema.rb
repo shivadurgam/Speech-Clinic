@@ -11,13 +11,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150417171719) do
+ActiveRecord::Schema.define(version: 20150420083114) do
 
   create_table "appointments", force: :cascade do |t|
     t.date     "date"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer  "user_id"
+    t.text     "slots"
   end
 
   add_index "appointments", ["user_id"], name: "index_appointments_on_user_id"
@@ -30,6 +31,7 @@ ActiveRecord::Schema.define(version: 20150417171719) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer  "date_id"
+    t.text     "time_slots"
   end
 
   add_index "slots", ["date_id"], name: "index_slots_on_date_id"

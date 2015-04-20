@@ -15,7 +15,12 @@
     <%= f.label :date %><br>
     <%= f.date_select :date, :value => Time.now.strftime('%Y-%m-%d') %>
   </div>
+  <div>
+      <%= f.select :slots, options_for_select(['9AM', '10AM', '11AM', '12PM']) %>
+  </div>
   <div class="actions">
     <%= f.submit %>
   </div>
 <% end %>
+
+

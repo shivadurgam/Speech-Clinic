@@ -9,8 +9,6 @@
       <ul class="nav navbar-nav">
               <% if user_signed_in? %>
               <li><%= link_to 'Fix An Appointment', new_appointment_path %></li>
-              
-              <li><%= link_to 'Patients',  root_path %> </li>
               <li><%= link_to 'My Account', account_path %></li>
               <% end %>
       </ul>

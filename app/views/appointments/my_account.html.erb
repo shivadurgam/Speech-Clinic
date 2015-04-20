@@ -10,12 +10,11 @@
 		<% else %>
 			Your appointment is scheduled on 
 				<% current_user.appointments.each do |apmt| %>
-					<strong><%= apmt.date.strftime("#{apmt.date.day.ordinalize} %B, %Y") %>.
+					<strong><%= apmt.date.strftime("#{apmt.date.day.ordinalize} %B, %Y") %> 	at <%= apmt.slots %>.
 					</strong> <br /><br />
-					To Reschedule your appointment 
-					<%= link_to 'Click here', edit_appointment_path(apmt), class: "btn btn-primary" %>	<br /> <br />
-					To Cancel your appointment 
-					<%= link_to 'Click here', apmt, method: :delete, data: {confirm: "Are you sure?"}, class: "btn btn-primary" %>
+
+					To Reschedule your appointment  
+					<%= link_to 'Click here', apmt, method: :delete, data: {confirm: "Are you sure?"}, class: "btn btn-warning" %>
 				<% end %>
 		<% end %>								
 	</div>

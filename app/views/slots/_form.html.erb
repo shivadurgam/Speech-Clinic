@@ -12,21 +12,12 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :slot1 %><br>
-    <%= f.text_field :slot1 %>
-  </div>
-  <div class="field">
-    <%= f.label :slot2 %><br>
-    <%= f.text_field :slot2 %>
-  </div>
-  <div class="field">
-    <%= f.label :slot3 %><br>
-    <%= f.text_field :slot3 %>
-  </div>
-  <div class="field">
-    <%= f.label :slot4 %><br>
-    <%= f.text_field :slot4 %>
-  </div>
+    Select a slot:
+      <%= f.check_box :time_slots, { multiple: true , label: "Slot 1"}, 1, nil %>
+      <%= f.check_box :time_slots, { multiple: true , label: "Slot 2"}, 2, nil %>
+      <%= f.check_box :time_slots, { multiple: true , label: "Slot 3"}, 3, nil %>
+      <%= f.check_box :time_slots, { multiple: true , label: "Slot 4"}, 4, nil %>   </div>
+ 
   <div class="actions">
     <%= f.submit %>
   </div>

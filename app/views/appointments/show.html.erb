@@ -3,9 +3,9 @@
 	<%= @appointment.user.email %>
 </p>
 <p>
-  <strong>Date:</strong>
-  <%= @appointment.date %>
+  <strong>Appointment on:</strong>
+  <%= @appointment.date %> at <%= @appointment.slots %>
 </p>
 
-<%= link_to 'Edit', edit_appointment_path(@appointment) %> |
-<%= link_to 'Back', appointments_path %>
+<%= link_to 'Reschedule', @appointment, method: :delete, data: {confirm: "Are you sure?"}, class: "btn btn-warning" %>
+<%= link_to 'Back', appointments_path, class: "btn btn-success" %>
