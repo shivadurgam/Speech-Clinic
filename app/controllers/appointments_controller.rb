@@ -33,10 +33,12 @@ class AppointmentsController < ApplicationController
 
   def create
     @appointment = current_user.appointments.build(appointment_params)
-    @shiva = Appointment.find_by_date(@appointment.date)
-
-      if @shiva
+    @apmt_date = @appointment.date
+    @apmt = Appointment.find_by_date(@apmt_date)
+      if @apmt
         redirect_to new_appointment_path, alert:  "No slots available for the chosen date"
+      elsif @apmt_date < Date.today
+        redirect_to new_appointment_path, alert: "Choose a future date"
       else 
         respond_to do |format|
           if @appointment.save

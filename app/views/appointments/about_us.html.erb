@@ -1,0 +1,54 @@
+<% provide(:title, 'About us') %>
+<div class="row">
+  <div class="col-md-6">
+    <h3 align="left"><strong>Oto & Oro Speech and hearing Clinic</strong></h3> </br>
+    <p> Dr.Anoohya has a Masters Degree in Audiology and Speech Language Pathology.  </br>
+        She has been into the service since 2012 
+    </p><br />
+    <img src="anu.jpeg">
+
+  </div>
+
+  <div class="col-md-6">
+    <div class="row">
+      <div class="col-md-12">
+        <div id="calendar">
+          <h3 id="month">
+              <%= link_to calendar_path(date: @date - 1.month), class: "btn btn" do %>
+               <strong><</strong> 
+              <% end %>
+
+              <%= "#{@date.strftime("%B")} #{@date.year}" %>
+
+              <%= link_to calendar_path(date: @date + 1.month), class: "btn btn" do %>
+               <strong>></strong>
+              <% end %>
+          </h3>
+          <%= calendar @date do |date| %>
+            <%= date.day %> 
+            <% @appointments.each do |apmt| %>
+               <ul>
+               
+                 <% if apmt.date == date %>
+                    <li>
+                      <i style= " <% if user_signed_in? %><% if apmt.user.email == current_user.email %> 
+                                      color:red; 
+                                  <% end %> <% end %>">  
+                        <%= apmt.user.email %> 
+                      </i>
+                      <% if user_signed_in? %>
+                        <% if apmt.user.email == current_user.email %>    
+                          <%= link_to 'Delete', apmt,  method: :delete, data: {confirm: "arey you sure?"} %> 
+                        <% end %>
+                      <% end %>
+                    </li>    
+                 
+                <% end %>
+               </ul> 
+             <% end %>
+          <% end %>
+       </div>
+      </div>
+    </div>
+  </div>
+</div>
