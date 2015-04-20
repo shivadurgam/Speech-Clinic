@@ -2,28 +2,42 @@
   <div class="col-md-12">
     <div id="calendar">
       <h2 id="month">
-        <%= link_to calendar_path(date: @date - 1.month), class: "btn btn" do %>
-         <strong><</strong> 
-        <% end %>
-        <%= "#{@date.strftime("%B")} #{@date.year}" %>
-        <%= link_to calendar_path(date: @date + 1.month), class: "btn btn" do %>
-         <strong>></strong>
-        <% end %>
+          <%= link_to calendar_path(date: @date - 1.month), class: "btn btn" do %>
+           <strong><</strong> 
+          <% end %>
+
+          <%= "#{@date.strftime("%B")} #{@date.year}" %>
+
+          <%= link_to calendar_path(date: @date + 1.month), class: "btn btn" do %>
+           <strong>></strong>
+          <% end %>
       </h2>
       <%= calendar @date do |date| %>
-        <%= date.day %> <ul>
-           <li>slot1</li>
-          <li>slot2</li>
-          <li>slot3</li>
-        </ul>
+        <%= date.day %> 
         <% @appointments.each do |apmt| %>
            <ul>
+           
              <% if apmt.date == date %>
-              <li><%= apmt.user.email %></li>
-             <% end %>
+                <li>
+                  <i style= " <% if user_signed_in? %><% if apmt.user.email == current_user.email %> 
+                                  color:red; 
+                                  font-size:18px 
+                              <% end %> <% end %>">  
+                    <%= apmt.user.email %> 
+                  </i>
+                  <% if user_signed_in? %>
+                    <% if apmt.user.email == current_user.email %>   
+                  
+                      <%= link_to 'Reschedule', edit_appointment_path(apmt) %> &nbsp 
+                      <%= link_to 'Delete', apmt,  method: :delete, data: {confirm: "arey you sure?"} %> 
+                    <% end %>
+                  <% end %>
+                </li>    
+             
+            <% end %>
            </ul> 
          <% end %>
       <% end %>
-    </div>
+   </div>
   </div>
 </div>

@@ -7,8 +7,13 @@ class AppointmentsController < ApplicationController
   # GET /appointments.json
   def index
     @appointments = Appointment.all
-    @date = params[:date] ? Date.parse(params[:date]) : Date.today
-
+      if current_user.appointments.any?
+        current_user.appointments.each do |apmt|
+          @date = params[:date] ? Date.parse(params[:date]) : apmt.date
+        end
+      else
+        @date = params[:date] ? Date.parse(params[:date]) : Date.today
+      end
   end
 
   # GET /appointments/1
